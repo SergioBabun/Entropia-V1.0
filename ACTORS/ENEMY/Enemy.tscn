@@ -54,7 +54,7 @@ damage = 2
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )
 animation = "walk"
-frame = 5
+frame = 1
 playing = true
 
 [node name="Floordetection" type="RayCast2D" parent="AnimatedSprite"]

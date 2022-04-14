@@ -7,4 +7,7 @@ func _ready():
 	$TextureProgress.max_value = jugadorscript.health
 
 func _process(_delta):
-	$TextureProgress.value = jugadorscript.health
+	if get_parent().has_node("Player"):
+		$TextureProgress.value = jugadorscript.health
+	else:
+		$TextureProgress.value = 0

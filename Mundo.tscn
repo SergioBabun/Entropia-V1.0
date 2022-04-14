@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Tocho.png" type="Texture" id=1]
 [ext_resource path="res://Escenajugador.tscn" type="PackedScene" id=2]
+[ext_resource path="res://FireSpirit/Wisp.png" type="Texture" id=3]
 [ext_resource path="res://ACTORS/ENEMY/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ASSETS/Barra salud.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Moneda.tscn" type="PackedScene" id=6]
@@ -12,6 +13,7 @@
 [ext_resource path="res://Dynamic Space Background/Nebula Aqua-Pink.png" type="Texture" id=11]
 [ext_resource path="res://Dynamic Space Background/Stars Small_1.png" type="Texture" id=12]
 [ext_resource path="res://Dynamic Space Background/Stars Small_2.png" type="Texture" id=13]
+[ext_resource path="res://pickups/firespirit/fireSpiritPickUp.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
@@ -81,10 +83,7 @@ position = Vector2( 549, 106 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="Barra salud" parent="." instance=ExtResource( 5 )]
-jugadorscript_node = NodePath("../KinematicBody2D2")
-
-[node name="Enemy" parent="Barra salud" instance=ExtResource( 4 )]
-position = Vector2( 0, 1 )
+jugadorscript_node = NodePath("../Player")
 
 [node name="Moneda" parent="." instance=ExtResource( 6 )]
 position = Vector2( 191, 390 )
@@ -123,6 +122,26 @@ margin_right = 388.736
 margin_bottom = 21.2
 custom_fonts/font = SubResource( 3 )
 text = "656"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fireSprite" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 429, 37 )
+texture = ExtResource( 3 )
+hframes = 9
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchor_left = 0.011
+anchor_top = 0.048
+anchor_right = 0.011
+anchor_bottom = 0.048
+margin_left = 444.736
+margin_top = 0.199999
+margin_right = 484.736
+margin_bottom = 21.2
+custom_fonts/font = SubResource( 3 )
+text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -176,7 +195,7 @@ motion_mirroring = Vector2( 4096, 4096 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Nebula"]
 modulate = Color( 1, 1, 1, 0.905882 )
-position = Vector2( -2287, -2642 )
+position = Vector2( -2291, -2642 )
 texture = ExtResource( 11 )
 centered = false
 region_rect = Rect2( 253, 67, 393, 88 )
@@ -192,12 +211,27 @@ position = Vector2( -1510, -1402 )
 texture = ExtResource( 13 )
 centered = false
 
-[node name="KinematicBody2D2" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 526, 207 )
 scale = Vector2( 0.581683, 0.581683 )
 
-[node name="Camera2D" type="Camera2D" parent="KinematicBody2D2"]
-position = Vector2( -24.0679, 134.094 )
-scale = Vector2( 89.1433, 0.027627 )
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 526, 207 )
+scale = Vector2( 0.581683, 0.581683 )
 current = true
 editor_draw_screen = false
+
+[node name="fireSpiritPickUp" parent="." instance=ExtResource( 14 )]
+position = Vector2( 610, 215 )
+
+[node name="fireSpiritPickUp2" parent="." instance=ExtResource( 14 )]
+position = Vector2( 345, 129 )
+
+[node name="fireSpiritPickUp3" parent="." instance=ExtResource( 14 )]
+position = Vector2( 684, 365 )
+
+[node name="fireSpiritPickUp4" parent="." instance=ExtResource( 14 )]
+position = Vector2( 777, 104 )
