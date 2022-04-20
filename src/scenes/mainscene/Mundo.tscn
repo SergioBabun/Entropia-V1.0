@@ -44,12 +44,16 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 4 )
 
-[node name="MainScene" type="Node2D"]
+[node name="MainScene" type="Control"]
 script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -70, -180 )
-scale = Vector2( -4.39241, 3.22642 )
+rotation = -3.14159
+scale = Vector2( 4.39241, -3.22642 )
 tile_set = SubResource( 2 )
 cell_size = Vector2( 8, 8 )
 show_collision = true

@@ -30,14 +30,14 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=6]
 radius = 8.75
 
-[node name="Moneda" type="Node2D"]
+[node name="coin" type="Node2D"]
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "moneda_anim"
-frame = 2
+frame = 3
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
