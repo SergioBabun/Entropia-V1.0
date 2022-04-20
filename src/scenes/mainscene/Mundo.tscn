@@ -1,0 +1,237 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://src/scenes/UI/Barra salud.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/scenes/ACTORS/FireSpirit/Wisp.png" type="Texture" id=2]
+[ext_resource path="res://src/ASSETS/Coin.png" type="Texture" id=3]
+[ext_resource path="res://src/fonts/Retro Gaming font.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://src/scenes/pickups/firespirit/fireSpiritPickUp.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/scenes/ACTORS/Player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/ASSETS/Dynamic Space Background/Nebula Aqua-Pink.png" type="Texture" id=7]
+[ext_resource path="res://src/scenes/ACTORS/ENEMY/Enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/scenes/pickups/coin/coin.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/script/mainscene.gd" type="Script" id=10]
+[ext_resource path="res://src/ASSETS/Dynamic Space Background/Stars Small_2.png" type="Texture" id=11]
+[ext_resource path="res://src/ASSETS/Tocho.png" type="Texture" id=12]
+[ext_resource path="res://src/script/UIscript.gd" type="Script" id=13]
+[ext_resource path="res://src/ASSETS/Dynamic Space Background/Stars Small_1.png" type="Texture" id=14]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
+
+[sub_resource type="TileSet" id=2]
+0/name = "Tocho.png 0"
+0/texture = ExtResource( 12 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 8, 8 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 4 )
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource( 10 )
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2( -70, -180 )
+scale = Vector2( -4.39241, 3.22642 )
+tile_set = SubResource( 2 )
+cell_size = Vector2( 8, 8 )
+show_collision = true
+collision_layer = 5
+collision_mask = 5
+format = 1
+tile_data = PoolIntArray( 524257, 0, 0, 524258, 0, 0, 524259, 0, 0, 524260, 0, 0, 524261, 0, 0, 524262, 0, 0, 524263, 0, 0, 524264, 0, 0, 524265, 0, 0, 524266, 0, 0, 524267, 0, 0, 524268, 0, 0, 524269, 0, 0, 524270, 0, 0, 524271, 0, 0, 524272, 0, 0, 524273, 0, 0, 524274, 0, 0, 524275, 0, 0, 524276, 0, 0, 524277, 0, 0, 524278, 0, 0, 524279, 0, 0, 524280, 0, 0, 524281, 0, 0, 524282, 0, 0, 524283, 0, 0, 524284, 0, 0, 524285, 0, 0, 589793, 0, 0, 589794, 0, 0, 589814, 0, 0, 589815, 0, 0, 589821, 0, 0, 655329, 0, 0, 655330, 0, 0, 655350, 0, 0, 655357, 0, 0, 720865, 0, 0, 720866, 0, 0, 720875, 0, 0, 720886, 0, 0, 720887, 0, 0, 720890, 0, 0, 720893, 0, 0, 786401, 0, 0, 786402, 0, 0, 786403, 0, 0, 786404, 0, 0, 786421, 0, 0, 786429, 0, 0, 851937, 0, 0, 851938, 0, 0, 851943, 0, 0, 851950, 0, 0, 851951, 0, 0, 851952, 0, 0, 851957, 0, 0, 851965, 0, 0, 917473, 0, 0, 917474, 0, 0, 917481, 0, 0, 917482, 0, 0, 917492, 0, 0, 917496, 0, 0, 917497, 0, 0, 917500, 0, 0, 917501, 0, 0, 983009, 0, 0, 983010, 0, 0, 983028, 0, 0, 983030, 0, 0, 983031, 0, 0, 983032, 0, 0, 983033, 0, 0, 983037, 0, 0, 1048545, 0, 0, 1048546, 0, 0, 1048547, 0, 0, 1048564, 0, 0, 1048566, 0, 0, 1048567, 0, 0, 1048568, 0, 0, 1048569, 0, 0, 1048573, 0, 0, 1114081, 0, 0, 1114082, 0, 0, 1114083, 0, 0, 1114091, 0, 0, 1114092, 0, 0, 1114100, 0, 0, 1114103, 0, 0, 1114104, 0, 0, 1114105, 0, 0, 1114106, 0, 0, 1114109, 0, 0, 1179617, 0, 0, 1179618, 0, 0, 1179619, 0, 0, 1179633, 0, 0, 1179634, 0, 0, 1179635, 0, 0, 1179636, 0, 0, 1179637, 0, 0, 1179638, 0, 0, 1179639, 0, 0, 1179640, 0, 0, 1179641, 0, 0, 1179645, 0, 0, 1245153, 0, 0, 1245154, 0, 0, 1245176, 0, 0, 1245177, 0, 0, 1245180, 0, 0, 1245181, 0, 0, 1310689, 0, 0, 1310690, 0, 0, 1310691, 0, 0, 1310692, 0, 0, 1310693, 0, 0, 1310694, 0, 0, 1310695, 0, 0, 1310696, 0, 0, 1310701, 0, 0, 1310702, 0, 0, 1310713, 0, 0, 1310717, 0, 0, 1376225, 0, 0, 1376226, 0, 0, 1376249, 0, 0, 1376253, 0, 0, 1441761, 0, 0, 1441762, 0, 0, 1441785, 0, 0, 1441788, 0, 0, 1441789, 0, 0, 1507297, 0, 0, 1507300, 0, 0, 1507301, 0, 0, 1507302, 0, 0, 1507303, 0, 0, 1507304, 0, 0, 1507305, 0, 0, 1507306, 0, 0, 1507321, 0, 0, 1507325, 0, 0, 1572833, 0, 0, 1572834, 0, 0, 1572835, 0, 0, 1572836, 0, 0, 1572837, 0, 0, 1572838, 0, 0, 1572846, 0, 0, 1572847, 0, 0, 1572848, 0, 0, 1572849, 0, 0, 1572856, 0, 0, 1572857, 0, 0, 1572861, 0, 0, 1638369, 0, 0, 1638370, 0, 0, 1638371, 0, 0, 1638372, 0, 0, 1638375, 0, 0, 1638376, 0, 0, 1638388, 0, 0, 1638389, 0, 0, 1638390, 0, 0, 1638391, 0, 0, 1638392, 0, 0, 1638393, 0, 0, 1638394, 0, 0, 1638397, 0, 0, 1703905, 0, 0, 1703906, 0, 0, 1703907, 0, 0, 1703912, 0, 0, 1703913, 0, 0, 1703914, 0, 0, 1703915, 0, 0, 1703929, 0, 0, 1703933, 0, 0, 1769441, 0, 0, 1769442, 0, 0, 1769443, 0, 0, 1769450, 0, 0, 1769454, 0, 0, 1769455, 0, 0, 1769456, 0, 0, 1769457, 0, 0, 1769468, 0, 0, 1769469, 0, 0, 1834977, 0, 0, 1834978, 0, 0, 1834979, 0, 0, 1834980, 0, 0, 1834981, 0, 0, 1834982, 0, 0, 1834983, 0, 0, 1834986, 0, 0, 1834993, 0, 0, 1834995, 0, 0, 1834996, 0, 0, 1834997, 0, 0, 1834998, 0, 0, 1835005, 0, 0, 1900513, 0, 0, 1900514, 0, 0, 1900515, 0, 0, 1900516, 0, 0, 1900517, 0, 0, 1900518, 0, 0, 1900519, 0, 0, 1900522, 0, 0, 1900529, 0, 0, 1900541, 0, 0, 1966049, 0, 0, 1966050, 0, 0, 1966051, 0, 0, 1966052, 0, 0, 1966053, 0, 0, 1966054, 0, 0, 1966055, 0, 0, 1966056, 0, 0, 1966057, 0, 0, 1966058, 0, 0, 1966059, 0, 0, 1966060, 0, 0, 1966061, 0, 0, 1966062, 0, 0, 1966063, 0, 0, 1966064, 0, 0, 1966065, 0, 0, 1966066, 0, 0, 1966067, 0, 0, 1966068, 0, 0, 1966069, 0, 0, 1966070, 0, 0, 1966071, 0, 0, 1966072, 0, 0, 1966073, 0, 0, 1966074, 0, 0, 1966075, 0, 0, 1966076, 0, 0, 1966077, 0, 0 )
+
+[node name="Enemy" parent="." groups=["enemy"] instance=ExtResource( 8 )]
+position = Vector2( 144, 544 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 250, 413 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 495, 544 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 438, 389 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Enemy5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 775, 286 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Enemy6" parent="." instance=ExtResource( 8 )]
+position = Vector2( 549, 106 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Barra salud" parent="." instance=ExtResource( 1 )]
+jugadorscript_node = NodePath("../Player")
+
+[node name="Moneda" parent="." instance=ExtResource( 9 )]
+position = Vector2( 191, 390 )
+
+[node name="Moneda4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 332, 140 )
+
+[node name="Moneda6" parent="." instance=ExtResource( 9 )]
+position = Vector2( 56, 261 )
+
+[node name="Moneda5" parent="." instance=ExtResource( 9 )]
+position = Vector2( 853, 227 )
+
+[node name="Moneda2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 403, 237 )
+
+[node name="Moneda3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 441, 237 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 13 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 343, 39 )
+texture = ExtResource( 3 )
+hframes = 4
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchor_left = 0.011
+anchor_top = 0.048
+anchor_right = 0.011
+anchor_bottom = 0.048
+margin_left = 348.736
+margin_top = 0.199999
+margin_right = 388.736
+margin_bottom = 21.2
+custom_fonts/font = SubResource( 3 )
+text = "656"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fireSprite" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 429, 37 )
+texture = ExtResource( 2 )
+hframes = 9
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchor_left = 0.011
+anchor_top = 0.048
+anchor_right = 0.011
+anchor_bottom = 0.048
+margin_left = 444.736
+margin_top = 0.199999
+margin_right = 484.736
+margin_bottom = 21.2
+custom_fonts/font = SubResource( 3 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Moneda7" parent="." instance=ExtResource( 9 )]
+position = Vector2( 53, 132 )
+
+[node name="Moneda8" parent="." instance=ExtResource( 9 )]
+position = Vector2( 261, 159 )
+
+[node name="Moneda9" parent="." instance=ExtResource( 9 )]
+position = Vector2( 646, 544 )
+
+[node name="Moneda10" parent="." instance=ExtResource( 9 )]
+position = Vector2( 722, 133 )
+
+[node name="Moneda11" parent="." instance=ExtResource( 9 )]
+position = Vector2( 922, 77 )
+
+[node name="Moneda12" parent="." instance=ExtResource( 9 )]
+position = Vector2( 55, 545 )
+
+[node name="Moneda13" parent="." instance=ExtResource( 9 )]
+position = Vector2( 55, 339 )
+
+[node name="Moneda14" parent="." instance=ExtResource( 9 )]
+position = Vector2( 648, 59 )
+
+[node name="Moneda15" parent="." instance=ExtResource( 9 )]
+position = Vector2( 546, 393 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="BackgroundStars" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 1, 1, 1, 0.647059 )
+position = Vector2( 6904, 4630 )
+motion_scale = Vector2( 0.1, 0.1 )
+motion_offset = Vector2( 1024, 1024 )
+motion_mirroring = Vector2( 4096, 4096 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/BackgroundStars"]
+position = Vector2( -8374, -6156 )
+texture = ExtResource( 14 )
+centered = false
+
+[node name="Nebula" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 1, 1, 1, 0.631373 )
+position = Vector2( 199, -293 )
+motion_scale = Vector2( 0.3, 0.3 )
+motion_mirroring = Vector2( 4096, 4096 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Nebula"]
+modulate = Color( 1, 1, 1, 0.905882 )
+position = Vector2( -2291, -2642 )
+texture = ExtResource( 7 )
+centered = false
+region_rect = Rect2( 253, 67, 393, 88 )
+
+[node name="ForegroundStars" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 1, 1, 1, 0.631373 )
+motion_scale = Vector2( 0.6, 0.6 )
+motion_mirroring = Vector2( 4096, 4096 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ForegroundStars"]
+modulate = Color( 1, 1, 1, 0.647059 )
+position = Vector2( -1510, -1402 )
+texture = ExtResource( 11 )
+centered = false
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 526, 207 )
+scale = Vector2( 0.581683, 0.581683 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 526, 207 )
+scale = Vector2( 0.581683, 0.581683 )
+current = true
+editor_draw_screen = false
+
+[node name="fireSpiritPickUp" parent="." instance=ExtResource( 5 )]
+position = Vector2( 610, 215 )
+
+[node name="fireSpiritPickUp2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 345, 129 )
+
+[node name="fireSpiritPickUp3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 684, 365 )
+
+[node name="fireSpiritPickUp4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 777, 104 )

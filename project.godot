@@ -11,12 +11,12 @@ config_version=4
 [application]
 
 config/name="Entropia V1.0"
-run/main_scene="res://Mundo.tscn"
-config/icon="res://Logo Entropia V1.0 128x128 px.png"
+run/main_scene="res://src/scenes/mainscene/Mundo.tscn"
+config/icon="res://src/ASSETS/Logo Entropia V1.0 128x128 px.png"
 
 [autoload]
 
-Global="*res://Global.gd"
+Global="*res://src/script/autoload/Global.gd"
 
 [input]
 
