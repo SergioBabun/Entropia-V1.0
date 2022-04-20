@@ -8,4 +8,4 @@ func next_scene():
 	var scene = preload("res://src/scenes/mainscene/Mundo.tscn")
 	var object = scene.instance()
 	get_parent().add_child(object)
-	queue_free()
+	Methods.delete(self)

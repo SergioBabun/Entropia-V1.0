@@ -55,7 +55,7 @@ func _physics_process(_delta):
 func take_damage(value):
 	health -= value
 	if health <= value:
-		queue_free()
+		Methods.delete(self)
 		Global.emit_signal("player_dead")
 
 func spawn_fire_spirit():
@@ -73,4 +73,7 @@ func _input(event):
 	if Input.is_action_just_pressed("shoot"):
 		emit_signal("fire_shoot",dir)
 		pass
+	
+	if Input.is_key_pressed(KEY_ESCAPE):
+		Scenes.add_shop(get_parent().get_node('CanvasLayer'))
 	pass

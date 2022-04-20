@@ -54,4 +54,4 @@ func _on_Hurtbox_body_entered(body):
 func take_damage(value):
 	health -= value
 	if health <= value:
-		queue_free()
+		Methods.delete(self)

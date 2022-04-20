@@ -10,5 +10,5 @@ func _on_fireSpiritPickUp_body_entered(body):
 	if Global.fireSpritSpawned != true:
 		body.spawn_fire_spirit()
 		Global.fireSpritSpawned = true
-	queue_free()
+	Methods.delete(self)
 	pass # Replace with function body.

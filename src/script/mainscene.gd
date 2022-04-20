@@ -9,6 +9,6 @@ func _ready():
 func gameover():
 	var gameover_scene = preload("res://src/scenes/gameover/Gameover.tscn")
 	var gameover = gameover_scene.instance()
-	get_node("Camera2D").add_child(gameover)
+	get_node("CanvasLayer").add_child(gameover)
 	
 	pass

@@ -6,5 +6,5 @@ func _on_Area2D_body_entered(body):
 		
 		get_parent().monedas += 1
 		print(str(get_parent().monedas))
-		queue_free()
+		Methods.delete(self)
 	pass # Replace with function body.
