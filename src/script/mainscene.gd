@@ -1,6 +1,5 @@
 extends Control
 
-var monedas :int = 0
 
 func _ready():
 	Global.connect("player_dead",self,'gameover')

@@ -1,6 +1,6 @@
 extends Control
 
-export var splash_on = true #it plays the intro company scene
+export var splash_on = true #it plays the intro company name scene
 
 func _ready():
 	if splash_on: next_scene("res://src/scenes/splash/Splash.tscn")
