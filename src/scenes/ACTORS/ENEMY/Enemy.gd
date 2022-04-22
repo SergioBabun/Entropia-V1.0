@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var damage = 20
+export (int) var damage = 1
 
 onready var hitbox = $Hitbox
 var health = 5

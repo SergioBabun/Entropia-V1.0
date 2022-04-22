@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
-var health = 5
+var health = 10
 const ACCELERATION = 70
 const MAX_SPEED = 300
-const JUMP_H = -500
+const JUMP_H = -600
 const UP = Vector2(0, -1)
-const gravity = 25
+const gravity = 30
 var motion = Vector2.ZERO
 var dir = -1
 onready var sprite = $Sprite
