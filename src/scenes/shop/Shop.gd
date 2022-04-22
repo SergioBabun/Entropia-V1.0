@@ -3,8 +3,14 @@ extends Control
 #SHOP
 
 var can_exit = false
-var itemToBuy ={}
 var spinvalue = 1
+
+#INVENTROY TAB
+onready var inventory_item_holder = $container/TabContainer/Inventory/body/ScrollContainer/Items
+onready var inventory_coin_label = $container/TabContainer/Inventory/body/coin/Label2
+onready var inventory_shop_label = $container/TabContainer/Inventory/body/text/RichTextLabel
+onready var inventory_buy_label = $container/TabContainer/Inventory/body/HBoxContainer2/Label
+onready var inventory_spin = $container/TabContainer/Inventory/body/HBoxContainer2/SpinBox
 
 #WEAPON TAB
 onready var weapon_item_holder = $container/TabContainer/Weapons/body/ScrollContainer/Items
@@ -44,14 +50,29 @@ func default():
 	can_exit = true
 
 func fillShop():
+	# TO REMOVE DUPLICATE AND UPDATE LIST
+	for i in inventory_item_holder.get_children():
+		i.queue_free()
+	for i in weapon_item_holder.get_children():
+		i.queue_free()
+	for i in skin_item_holder.get_children():
+		i.queue_free()
+	for i in material_item_holder.get_children():
+		i.queue_free()
+	
+	# TO FILL LIST
 	for i in Shop.weapons: 
 		spawnItem(i,weapon_item_holder)
-	
+
 	for i in Shop.skins: 
 		spawnItem(i,skin_item_holder)
-	
+
 	for i in Shop.materials: 
 		spawnItem(i,material_item_holder)
+	
+	
+	for i in Global.Inventory: 
+		spawnItem(i,inventory_item_holder)
 	pass
 
 func spawnItem(i,holder):
@@ -60,19 +81,22 @@ func spawnItem(i,holder):
 	item.item_name = i.name
 	item.item_price = i.price
 	item.item_texture = i.texture
+	item.item_amount = i.amount
 	holder.add_child(item)
 
 func set_text(res):
-	itemToBuy = res
+	var itemToBuy = res
 	weapon_buy_label.text = 'Buy Item: ' + str(itemToBuy.name) + ' | ' + 'Price: ' + str(itemToBuy.price * spinvalue) + ' coins'
 	skin_buy_label.text = 'Buy Item: ' + str(itemToBuy.name) + ' | ' + 'Price: ' + str(itemToBuy.price * spinvalue) + ' coins'
 	material_buy_label.text = 'Buy Item: ' + str(itemToBuy.name) + ' | ' + 'Price: ' + str(itemToBuy.price * spinvalue) + ' coins'
+	inventory_buy_label.text = 'Use Item: ' + str(itemToBuy.name) + '(' + str(itemToBuy.amount) + ')'
 	pass
 
 func setCoinText():
 	weapon_coin_label.text = 'Available Coins: ' + str(Global.coins) + ' Coins'
 	skin_coin_label.text = 'Available Coins: ' + str(Global.coins) + ' Coins'
 	material_coin_label.text = 'Available Coins: ' + str(Global.coins) + ' Coins'
+	inventory_coin_label.text = 'Available Coins: ' + str(Global.coins) + ' Coins'
 	pass
 
 func buyItem():
@@ -87,14 +111,48 @@ func buyItem():
 			weapon_shop_label.bbcode_text = '[center] > Thanks for purchasing ' + str(Shop.item_selected.name) + ' <'
 			skin_shop_label.bbcode_text = '[center] > Thanks for purchasing ' + str(Shop.item_selected.name) + ' <'
 			material_shop_label.bbcode_text = '[center] > Thanks for purchasing ' + str(Shop.item_selected.name) + ' <'
-			Global.coins -= Shop.item_selected.price
-			setCoinText()
+			buy()
 	else:
 		weapon_shop_label.bbcode_text = '[center] > No Item Selected <'
 		skin_shop_label.bbcode_text = '[center] > No Item Selected <'
 		material_shop_label.bbcode_text = '[center] > No Item Selected <'
 		
-	
+	pass
+
+func useItem():
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("shop_anim")
+	if Shop.item_selected:
+		if Shop.item_selected.amount < spinvalue:
+			inventory_shop_label.bbcode_text = '[center] > Items are not enough <'
+		else:
+			inventory_shop_label.bbcode_text = '[center] > ' + str(Shop.item_selected.name) + ' is Used! <'
+			use()
+	else:
+		inventory_shop_label.bbcode_text = '[center] > No Item Selected <'
+		
+	pass
+
+func use():
+	Shop.item_selected.amount -= spinvalue
+	if Shop.item_selected.amount > 0:
+		Methods.compareInventory(Shop.item_selected)
+		fillShop()
+		Shop.item_selected = null
+	else:
+		Methods.removeInventory(Shop.item_selected)
+		fillShop()
+		Shop.item_selected = null
+	Global.saveData()
+	pass
+
+func buy():
+	Global.coins -= Shop.item_selected.price * spinvalue
+	Shop.item_selected.amount = spinvalue
+	setCoinText()
+	Methods.addInventory(Shop.item_selected)
+	Shop.item_selected = null
+	Global.saveData()
 	pass
 
 func exit():
@@ -113,12 +171,18 @@ func _on_TabContainer_tab_changed(tab):
 	weapon_spin.value = 1
 	skin_spin.value = 1
 	material_spin.value = 1
-	set_text({'name': 'Item', 'price': 0})
+	set_text({'name': 'Item', 'price': 0, 'amount': 0})
+	fillShop()
 	pass # Replace with function body.
 
 
 func _on_SpinBox_value_changed(value):
 	spinvalue = value
-	if itemToBuy:
-		set_text(itemToBuy)
+	if Shop.item_selected:
+		set_text(Shop.item_selected)
+	pass # Replace with function body.
+
+
+func _on_UseButton_pressed():
+	useItem()
 	pass # Replace with function body.

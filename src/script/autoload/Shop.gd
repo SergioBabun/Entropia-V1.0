@@ -6,22 +6,26 @@ var weapons = [
 	{ 
 		'name': 'Small Axe',
 		'price': 10,
-		'texture': load("res://src/ASSETS/axe/W_Axe001.png"),
+		'texture': "res://src/ASSETS/axe/W_Axe001.png",
+		'amount': 1,
 	},
 	{ 
 		'name': 'Little Axe',
 		'price': 20,
-		'texture': load("res://src/ASSETS/axe/W_Axe002.png"),
+		'texture': "res://src/ASSETS/axe/W_Axe002.png",
+		'amount': 1,
 	},
 	{ 
 		'name': 'Iron Axe',
 		'price': 100,
-		'texture': load("res://src/ASSETS/axe/W_Axe007.png"),
+		'texture': "res://src/ASSETS/axe/W_Axe007.png",
+		'amount': 1,
 	},
 	{ 
 		'name': 'Demon Axe',
 		'price': 2000,
-		'texture': load("res://src/ASSETS/axe/W_Axe011.png"),
+		'texture': "res://src/ASSETS/axe/W_Axe011.png",
+		'amount': 1,
 	},
 ]
 
@@ -29,12 +33,14 @@ var skins = [
 	{ 
 		'name': 'Iron Axe',
 		'price': 100,
-		'texture': load("res://src/ASSETS/axe/W_Axe007.png"),
+		'texture': "res://src/ASSETS/axe/W_Axe007.png",
+		'amount': 1,
 	},
 	{ 
 		'name': 'Demon Axe',
 		'price': 2000,
-		'texture': load("res://src/ASSETS/axe/W_Axe011.png"),
+		'texture': "res://src/ASSETS/axe/W_Axe011.png",
+		'amount': 1,
 	},
 ]
 
@@ -42,12 +48,14 @@ var materials = [
 	{ 
 		'name': 'Small Axe',
 		'price': 10,
-		'texture': load("res://src/ASSETS/axe/W_Axe001.png"),
+		'texture': "res://src/ASSETS/axe/W_Axe001.png",
+		'amount': 1,
 	},
 	{ 
 		'name': 'Demon Axe',
 		'price': 2000,
-		'texture': load("res://src/ASSETS/axe/W_Axe011.png"),
+		'texture': "res://src/ASSETS/axe/W_Axe011.png",
+		'amount': 1,
 	},
 ]
 

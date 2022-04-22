@@ -44,6 +44,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("container/TabContainer/Inventory/body/text/RichTextLabel:percent_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "shop_anim"
@@ -79,6 +91,18 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("container/TabContainer/Inventory/body/text/RichTextLabel:percent_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -140,7 +164,109 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Inventory" type="Tabs" parent="Shop/container/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="body" type="VBoxContainer" parent="Shop/container/TabContainer/Inventory"]
+anchor_left = 0.05
+anchor_top = 0.107
+anchor_right = 0.95
+anchor_bottom = 0.991
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Shop/container/TabContainer/Inventory/body"]
+margin_right = 637.0
+margin_bottom = 358.0
+rect_min_size = Vector2( 0, 240 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Items" type="GridContainer" parent="Shop/container/TabContainer/Inventory/body/ScrollContainer"]
+margin_right = 637.0
+margin_bottom = 358.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 11
+custom_constants/hseparation = 11
+columns = 8
+
+[node name="coin" type="HBoxContainer" parent="Shop/container/TabContainer/Inventory/body"]
+margin_top = 362.0
+margin_right = 637.0
+margin_bottom = 376.0
+
+[node name="Label2" type="Label" parent="Shop/container/TabContainer/Inventory/body/coin"]
+margin_right = 637.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Available Coins: 2 coins"
+valign = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Shop/container/TabContainer/Inventory/body"]
+margin_top = 380.0
+margin_right = 637.0
+margin_bottom = 404.0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Shop/container/TabContainer/Inventory/body/HBoxContainer2"]
+margin_top = 5.0
+margin_right = 483.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Use Item: Item (0)"
+
+[node name="SpinBox" type="SpinBox" parent="Shop/container/TabContainer/Inventory/body/HBoxContainer2"]
+margin_left = 487.0
+margin_right = 561.0
+margin_bottom = 24.0
+min_value = 1.0
+value = 1.0
+
+[node name="UseButton" type="Button" parent="Shop/container/TabContainer/Inventory/body/HBoxContainer2"]
+margin_left = 565.0
+margin_right = 637.0
+margin_bottom = 24.0
+text = "Use Item"
+
+[node name="text" type="Control" parent="Shop/container/TabContainer/Inventory/body"]
+margin_top = 408.0
+margin_right = 637.0
+margin_bottom = 438.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Shop/container/TabContainer/Inventory/body/text"]
+anchor_left = 0.032
+anchor_top = 0.311
+anchor_right = 0.982
+anchor_bottom = 1.0
+bbcode_enabled = true
+bbcode_text = "[center]Welcome to the Inventory!"
+visible_characters = 0
+percent_visible = 0.0
+text = "Welcome to the Inventory!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Shop/container/TabContainer/Inventory/body/text"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.129412 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Weapons" type="Tabs" parent="Shop/container/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -451,6 +577,8 @@ anims/RESET = SubResource( 1 )
 anims/shop_anim = SubResource( 2 )
 
 [connection signal="tab_changed" from="Shop/container/TabContainer" to="Shop" method="_on_TabContainer_tab_changed"]
+[connection signal="value_changed" from="Shop/container/TabContainer/Inventory/body/HBoxContainer2/SpinBox" to="Shop" method="_on_SpinBox_value_changed"]
+[connection signal="pressed" from="Shop/container/TabContainer/Inventory/body/HBoxContainer2/UseButton" to="Shop" method="_on_UseButton_pressed"]
 [connection signal="value_changed" from="Shop/container/TabContainer/Weapons/body/HBoxContainer2/SpinBox" to="Shop" method="_on_SpinBox_value_changed"]
 [connection signal="pressed" from="Shop/container/TabContainer/Weapons/body/HBoxContainer2/Button" to="Shop" method="_on_Button_pressed"]
 [connection signal="value_changed" from="Shop/container/TabContainer/Skins/body/HBoxContainer2/SpinBox" to="Shop" method="_on_SpinBox_value_changed"]
