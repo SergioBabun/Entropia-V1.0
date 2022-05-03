@@ -135,6 +135,9 @@ func useItem():
 
 func use():
 	Shop.item_selected.amount -= spinvalue
+	if Shop.item_selected.name == 'Battery':
+		Global.battery = clamp(Global.battery + spinvalue, 0, Global.max_battery)
+		print(Global.battery)
 	if Shop.item_selected.amount > 0:
 		Methods.compareInventory(Shop.item_selected)
 		fillShop()

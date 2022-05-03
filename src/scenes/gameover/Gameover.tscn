@@ -1,13 +1,44 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/fonts/FREAKSOFNATUREMASSIVE.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/scenes/gameover/Gameover.gd" type="Script" id=2]
+[ext_resource path="res://src/ASSETS/battery/S_Holy01.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
 outline_size = 7
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.333333, 0.333333, 0.333333, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Gameover" type="Control"]
 pause_mode = 2
@@ -19,6 +50,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -39,5 +71,31 @@ __meta__ = {
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+margin_left = 472.0
+margin_top = 260.0
+margin_right = 552.0
+margin_bottom = 340.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/HBoxContainer"]
+margin_right = 80.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/HBoxContainer/TextureRect"]
+"anims/New Anim" = SubResource( 2 )
+anims/RESET = SubResource( 3 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

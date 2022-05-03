@@ -1,6 +1,8 @@
 extends Node
 #CONTAINS ALL METHODS
 
+signal player_enter
+
 func delete(object):
 	object.call_deferred('queue_free')
 

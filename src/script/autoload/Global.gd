@@ -2,9 +2,14 @@ extends Node
 
 signal player_dead
 
+var health = 10
+var battery = 3
+var max_battery = 3
 var coins = 30
 var fires = 0
 var fireSpritSpawned = false
+
+var last_pos = Vector2.ZERO
 
 var Inventory = []
 

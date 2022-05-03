@@ -57,6 +57,12 @@ var materials = [
 		'texture': "res://src/ASSETS/axe/W_Axe011.png",
 		'amount': 1,
 	},
+	{ 
+		'name': 'Battery',
+		'price': 0,
+		'texture': "res://src/ASSETS/battery/S_Holy01.png" ,
+		'amount': 1,
+	},
 ]
 
 func _ready():

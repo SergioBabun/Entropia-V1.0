@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var health = 10
+onready var health = Global.health
 const ACCELERATION = 70
 const MAX_SPEED = 300
 const JUMP_H = -600
@@ -10,7 +10,7 @@ var motion = Vector2.ZERO
 var dir = -1
 onready var sprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
- 
+export var can_hurt = false
 
 signal fire_shoot(dir) #TELLS THE FIRESPIRIT TO FIRE
 signal move(dir) #TELLS THE FIRESPIRIT WHAT DIRECTION HE IS FACING
@@ -53,10 +53,12 @@ func _physics_process(_delta):
 
 
 func take_damage(value):
-	health -= value
-	if health <= value:
-		Methods.delete(self)
-		Global.emit_signal("player_dead")
+	if can_hurt:
+		health -= value
+		if health <= value:
+			Methods.delete(self)
+			Global.emit_signal("player_dead")
+			Global.last_pos = global_position
 
 func spawn_fire_spirit():
 	yield(get_tree().create_timer(0.1),"timeout")

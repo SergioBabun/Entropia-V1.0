@@ -1,13 +1,17 @@
 extends CanvasLayer
 
-export(NodePath) var jugadorscript_node
-onready var jugadorscript = get_node(jugadorscript_node)
 
 func _ready():
-	$TextureProgress.max_value = jugadorscript.health
+	Methods.connect("player_enter",self,'set_max_value')
+
+func set_max_value():
+	$TextureProgress.max_value = Global.health
+	$TextureProgress.value = Global.health
+	pass
+
 
 func _process(_delta):
 	if get_parent().has_node("Player"):
-		$TextureProgress.value = jugadorscript.health
+		$TextureProgress.value = get_parent().get_node('Player').health
 	else:
 		$TextureProgress.value = 0
