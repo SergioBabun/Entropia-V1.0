@@ -7,7 +7,7 @@ func _ready():
 	Methods.connect("player_enter",self,'add_player')
 	Methods.emit_signal("player_enter")
 
-
+		
 func gameover():
 	Global.battery -= 1
 	var gameover_scene = preload("res://src/scenes/gameover/Gameover.tscn")

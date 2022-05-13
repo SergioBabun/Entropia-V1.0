@@ -43,6 +43,7 @@ func _physics_process(_delta):
  
 		if Input.is_action_just_pressed("ui_accept"):
 			motion.y = JUMP_H
+			Input.start_joy_vibration(0,1.0,1.0,1.0)
 		if friction == true:
 			motion.x = lerp(motion.x, 0, 0.5)
 	else:
