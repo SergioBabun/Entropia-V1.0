@@ -51,10 +51,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 21, 21.5 )
+extents = Vector2( 13, 16.5 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 26.5, 26.5 )
+extents = Vector2( 16.5, 20 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "New Anim"
@@ -102,10 +102,10 @@ tracks/0/keys = {
 [node name="Player" type="KinematicBody2D" groups=["kinematicbody2d", "player"]]
 modulate = Color( 1, 1, 1, 0 )
 script = ExtResource( 1 )
-can_hurt = true
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 2.5, 2.5 )
+position = Vector2( 0, 2 )
+scale = Vector2( 2.2, 2.2 )
 texture = ExtResource( 2 )
 hframes = 4
 
@@ -116,13 +116,13 @@ anims/RESET = SubResource( 2 )
 anims/Walk = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -1.5 )
+position = Vector2( 0, 3.5 )
 shape = SubResource( 4 )
 
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2( -0.5, -2.5 )
+position = Vector2( -0.5, 4 )
 shape = SubResource( 5 )
 
 [node name="Intro" type="AnimationPlayer" parent="."]
