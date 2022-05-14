@@ -77,6 +77,6 @@ func _input(event):
 		emit_signal("fire_shoot",dir)
 		pass
 	
-	if Input.is_key_pressed(KEY_ESCAPE):
+	if Input.is_action_just_pressed("shop"):
 		Scenes.add_shop(get_parent().get_node('CanvasLayer'))
 	pass
